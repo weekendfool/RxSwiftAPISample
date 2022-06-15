@@ -17,6 +17,6 @@ target 'RxSwiftAPISample' do
   end
 pod 'RxSwift'
 pod 'RxCocoa'
-
+pod 'Alamofire'
 
 end

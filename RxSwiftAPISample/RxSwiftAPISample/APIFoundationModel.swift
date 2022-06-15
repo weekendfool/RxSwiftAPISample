@@ -30,7 +30,6 @@ class  APIFoundationModel {
             
             do {
                 
-                
                 let book: BookData = try decoder.decode(BookData.self, from: data)
                 print("book: \(book.self)")
             } catch let error {

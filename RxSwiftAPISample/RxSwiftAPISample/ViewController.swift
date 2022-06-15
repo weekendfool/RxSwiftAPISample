@@ -18,13 +18,16 @@ class ViewController: UIViewController {
     
     
     var model = APIFoundationModel()
+    let af = AlamofireModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         "https://ww.googleapis.com/books/v1/volumes?q=9784101801636"
 //        model.searchGitHabUser(query: "9784101801636")
-        model.searchGitHabUser()
+//        model.searchGitHabUser()
+        
+        af.getData()
     }
 
 
