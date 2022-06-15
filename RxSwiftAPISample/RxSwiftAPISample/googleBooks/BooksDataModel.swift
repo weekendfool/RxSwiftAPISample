@@ -6,14 +6,36 @@
 //
 
 import Foundation
+import UIKit
 
-class BookDataModel: Decodable {
+struct BookData: Codable {
     
-    struct BookDataModel {
-        let title: String
-        let publishData: String
-        let auther: String
-        let thumbnail: UIImage
-    }
+
+    var kind: String
+    var items: [Items]
     
 }
+    
+    
+struct Items: Codable {
+
+    var id: String
+    var kind: String
+    var etag: String
+    var selfLink: String
+    var volumeInfo: VolumeInfo
+//    var title: String
+    }
+
+struct VolumeInfo: Codable {
+        var title: String
+//        var authors: [String]
+    var industryIdentifiers: [IndustryIdentifier]
+}
+
+struct IndustryIdentifier: Codable {
+    var type: String
+    var identifier: String
+}
+        
+

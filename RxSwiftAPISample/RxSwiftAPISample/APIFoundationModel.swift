@@ -18,11 +18,26 @@ class  APIFoundationModel {
         print("url: \(url)")
     
         let request = URLRequest(url: url)
+//        let books = BookData
+        
+        let decoder: JSONDecoder = JSONDecoder()
     
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             // データ受信後の処理をかく
             print("data: \(data)")
             print("response: \(response)")
+            guard let data = data else { return }
+            
+            do {
+                
+                
+                let book: BookData = try decoder.decode(BookData.self, from: data)
+                print("book: \(book.self)")
+            } catch let error {
+                print("error: -----------------------")
+                print(error)
+//                fatalError()
+            }
     }
     
         task.resume()
