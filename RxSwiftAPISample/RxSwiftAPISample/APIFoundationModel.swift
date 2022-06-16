@@ -22,6 +22,8 @@ class  APIFoundationModel {
         
         let decoder: JSONDecoder = JSONDecoder()
     
+        var retunValue: String?
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             // データ受信後の処理をかく
             print("data: \(data)")
@@ -31,14 +33,21 @@ class  APIFoundationModel {
             do {
                 
                 let book: BookData = try decoder.decode(BookData.self, from: data)
-                print("book: \(book.self)")
+                retunValue = book.items[0].volumeInfo.title
+                
+                print("book: \(retunValue)")
             } catch let error {
                 print("error: -----------------------")
                 print(error)
 //                fatalError()
+                retunValue = "error"
             }
+//            return retunValue
     }
     
         task.resume()
+//        print("retunValue: \(retunValue)")
+//        return retunValue!
+       
     }
 }

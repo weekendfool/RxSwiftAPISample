@@ -20,14 +20,35 @@ class ViewController: UIViewController {
     var model = APIFoundationModel()
     let af = AlamofireModel()
     
+    let book = GoogleBooksAPIModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        "https://ww.googleapis.com/books/v1/volumes?q=9784101801636"
+       
 //        model.searchGitHabUser(query: "9784101801636")
 //        model.searchGitHabUser()
         
-        af.getData()
+//        af.getData()
+        
+        let decoder: JSONDecoder = JSONDecoder()
+        
+        
+        let x = book.getBookData(title: "isbn:9784101801636")
+        
+        x.subscribe { data in
+//            print(data)
+                data.map { data in
+                print("data:\(data)")
+                    print("data:\(data)")
+                var book: BookData = try decoder.decode(BookData.self, from: data)
+//                print("Book1: \(book)")
+                print("Book: \(book.items[0].volumeInfo.title)")
+        }
+        }.disposed(by: disposeBag)
+
+        
+        
     }
 
 
