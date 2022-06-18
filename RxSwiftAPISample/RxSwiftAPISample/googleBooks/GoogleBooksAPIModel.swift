@@ -62,12 +62,58 @@ class GoogleBooksAPIModel {
         return Observable.create { observer in
             AF.request(url).responseJSON { response in
                 print("通信")
-//                let book: BookData = try decoder.decode(BookData.self, from: data)
+//                let book: BookData = try decoder.decode(BookData.self, from: response.data!)
                 observer.onNext(response.data!)
 //                observer.onCompleted()
             }
             return Disposables.create()
         }
     }
+    
+    func getBookData2(title: String) -> Data {
+        let urlString = "https://www.googleapis.com/books/v1/volumes?q=\(title)"
+        
+        let encodeUrlStiring: String = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        let url = URL(string: encodeUrlStiring)!
+        
+        var data1: Data?
+        
+//        let decoder: JSONDecoder = JSONDecoder()
+        
+//        return
+        AF.request(url).responseJSON { response in
+            switch response.result {
+                
+            case .success:
+                do {
+                    guard  let data = response.data else { return }
+                    data1 = data
+//                    print("book: \(book.self)")
+//                    return data
+                } catch let error {
+                    print("error: -----------------------")
+                    print(error)
+    //                fatalError()
+                }
+                
+            case .failure(let error):
+                print("error: \(error)")
+            }
+        }
+        return data1!
+    }
+
+//    func changeJson(data: Data) -> Observable<String> {
+//       
+//            
+//            return Observable.create { observer in
+//                let decoder: JSONDecoder = JSONDecoder()
+//                let book: BookData = try decoder.decode(BookData.self, from: data)
+//                
+//                observer.onNext(book.items[0].volumeInfo.title)
+//            }
+//       
+//    }
     
 }
