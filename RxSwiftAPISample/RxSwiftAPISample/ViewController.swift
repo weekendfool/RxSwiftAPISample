@@ -65,6 +65,8 @@ class ViewController: UIViewController {
         
         let output = viewModel2.transform(input: input)
         
+        
+        
         output.resultTitle.bind(to: sampleSearchBar.rx.text)
             .disposed(by: disposeBag)
     }

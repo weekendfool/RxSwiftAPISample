@@ -81,7 +81,7 @@ extension ViewModel2: ViewModel2Type {
         }
     
 //        let output = data.subscribe { data in
-//            
+//
 //            data.map { jsonData -> String in
 //                let book: BookData = try decoder.decode(BookData.self, from: jsonData)
 //                print("output: \(book.items[0].volumeInfo.title)")
@@ -89,7 +89,7 @@ extension ViewModel2: ViewModel2Type {
 //            }
 ////            return bookData
 //        }.disposed(by: disposeBag)
-//        
+//
         
         return Output2(resultTitle: output)
 

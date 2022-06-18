@@ -62,6 +62,7 @@ class GoogleBooksAPIModel {
         return Observable.create { observer in
             AF.request(url).responseJSON { response in
                 print("通信")
+                print("data:\(response.data)")
 //                let book: BookData = try decoder.decode(BookData.self, from: response.data!)
                 observer.onNext(response.data!)
 //                observer.onCompleted()
